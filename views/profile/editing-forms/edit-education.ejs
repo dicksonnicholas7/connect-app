@@ -1,0 +1,151 @@
+
+
+<style>
+    #custom-button{
+    display: inline-block;
+    margin-left: -18px;
+    margin-top: 3px;
+    cursor: pointer;
+    background-color: rgb(12, 71, 103);
+    height: 32px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(12, 71, 103);
+    border-image: initial;
+    border-radius: 3px;
+    padding: 7px 12px;
+    color: white;
+    }
+</style>
+
+<div class="col-lg-8 col-md-8 mb-4 mt-5" id="edu_hide_form" style="display: none;">
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+
+            <div class="card-header bg-white mt-3" id="Education">
+
+
+                <button class="btn btn-link btn-block text-left" style="text-decoration: none; outline: none; " type="button" data-toggle="collapse" data-target="#collapseEdu" aria-expanded="false" aria-controls="collapseEdu">
+                    <div class="row justify-content-between education-profile">
+                            <div>
+                                <h3 class="edu">Education</h3>
+                            </div>
+                            <div>
+                                <i class="fa fa-angle-down text-muted profile-caret" style="font-size: 40px;"></i>
+                            </div>
+                    </div>
+                        <div class="tab-pane fade show active" id="eduForm" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <form action="/user/add-education" method="POST" enctype="multipart/form-data" class="form-row justify-content-center" id="addAnotherEdu">
+                                <input name="id" id="id" placeholder="" type="text" class="form-control" value="" hidden><br />
+                                <div class="card-business ml-3 mt-1" >
+
+                                    <div  id="success_msg_edu" ></div>
+
+                                    <div class="row pt-4" style="padding-left: 5rem; padding-right: 5rem;"></div>
+
+                                        <div class="col-md-12"></div>
+                                </div>
+                            </form>
+                        </div>
+                    
+                  </button>
+
+            </div>
+
+            
+
+            <div id="collapseEdu" class="collapse" aria-labelledby="Education" data-parent="#accordionExample">
+                <div class="card-body">
+
+                    <div class="">
+                        <div class="alert alert-success alert-dismissible mt-4" id="edu_success_msg" style="display: none; width: 50%; text-align: center; margin-left: 250px;" >Education saved successfully.</div>
+                    </div>
+
+
+                    <div class="col-md-12">
+                        
+                        <form action="" method="POST" enctype="multipart/form-data" id="fmEdu">
+                            <input name="id" id="id" placeholder="" type="text" class="form-control" value="" hidden>
+                            <div class="form-row mt-4">
+                                <div class="form-group col-md-6">
+                                  <label for="degree">Degree</label>
+                                  <select id="degree" name="degree" class="custom-select form-control">
+                                    <option value="HND"  >HND</option>
+                                    <option value="Bachelor's Degree" >Bachelor's Degree</option>
+                                    <option value="Master's Degree"  >Master's Degree</option>
+                                    <option value="Doctorate Degree" >Doctorate Degree</option>
+                                    <option value="Professor">PhD</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="program">Program of Study</label>
+                                  <input type="text" name="program" id="program" value="" class="form-control" placeholder="">
+                                </div>
+                            </div>
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="availability">University / College</label>
+                                    <input type="text" onautocomplete="offuniversity" name="university" id="university" value="" class="form-control" placeholder="">
+                                </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="country">Country</label>
+                                        <select name="edu_country" id="edu_country" class="custom-select form-control">
+                                            <option value="" selected></option>
+                                            
+                                            <option value=""></option>
+                                        
+                                        </select>
+                                    </div>
+                            </div>
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="project">Project / Activities</label>
+                                    <textarea type="text" class="form-control" id="project" name="project" value="" placeholder=""></textarea>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Attach File(s)</label><br>
+                                    <div class="form-control">
+                                        <input type="file" id="real-file" name="file" hidden="" />
+	                                    <button type="button" id="custom-button" >Click to Upload file(s)</button>
+	                                    <span id="custom-text"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row justify-content-center">
+                                <div class="row ">
+                                    <button type="submit" class="btn edit-profile-button mb-4" id="btnSubmitEducation">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const realFileBtn = document.getElementById("real-file");
+    const customBtn = document.getElementById("custom-button");
+    const customTxt = document.getElementById("custom-text");
+
+    customBtn.addEventListener("click", function(){
+        realFileBtn.click();
+    });
+
+    realFileBtn.addEventListener("change", function(){
+        if (realFileBtn.value) {
+            customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+        }else{
+            customTxt.innerHTML = "";
+        }
+    });
+</script>

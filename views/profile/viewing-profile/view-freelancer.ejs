@@ -1,0 +1,839 @@
+<% include ../../layout/header-public.ejs %>
+<% include ../../layout/menu-public.ejs %>
+<% include ../../layout/menu-portal.ejs %>
+
+<link rel="stylesheet" type="text/css" media="all" href="/vendors/css/dashboard.css" />
+
+<style>
+  .view-icon i {
+      color: #A41201;
+  }
+</style>
+
+<div class="container-fluid">
+
+    <div class="row" >
+        <div class="jumbotron jumbotron-fluid header-image-profile" style="background-image: url('/vendors/img/cover-photo.png'); background-size: cover;">
+            <div class="container-fluid">
+              <h1 class="display-4"></h1>
+              <p class="lead"></p>
+            </div>
+
+            <label class="">
+                <div class="div-pic" >
+                    <img src='/vendors/img/profile-pic-icon.png' id="profile_picture_img" class="profile-pic-jumb-client" alt="...">
+                </div>
+                <input class="text-center m-auto"  hidden type="file" id="picture" name="picture" onchange="readURL(this)" value="Add Photo" accept="image/*">
+                
+            </label>
+        </div>
+    </div>
+
+
+    
+    <div class="container-fluid final-view" style="margin-left: 40px;">
+
+        <div class="row mb-2 ">
+
+                <!-- VIEW FOR PERSONAL DETAILS COME HERE -->
+           <div class="container-fluid" id="free-profile-view">
+            <div class="row ">
+        
+                <div class="col-md-8 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-body">
+        
+                                <div class="row justify-content-end">
+                                    <button class="btn edit-profile-button mb-4" id="editbutton" >Edit Profile</button>
+                                </div>
+        
+        
+                                <div class="profile-details-arrange">
+        
+                                        <div class="row ">
+                                            <div>
+                                                <h3 class="name" style="font-weight: 600;" id="view_name">
+                                                    <%=free_user.User.first_name%>    <%=free_user.User.last_name%></h3>
+                                            </div>
+                                        </div>
+                
+                                    
+                                        <div class="row">
+                                            <div>
+                                                <h4 class="profile-job-title mb-3" style="font-weight: 600;"  id="view_jobtitle"><%=free_user.User.job_title%></h4>
+                                            </div>
+                                        </div>
+                
+                                        <div class="row mb-3">
+                                            <div>
+                                                <span style="color:#A41201; font-size: 15px;" id="view_coun_city"><i class="fa fa-map-marker mb-3" ></i>&nbsp;    <%=free_user.User.city%>, <%=free_user.User.country%> <i class="pl-5 fa fa-map-marker"></i>     <%=free_user.User.availability%>    </span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div>
+                                                <h3 class="golden" style="font-weight: 600; font-size: 26px;" >Golden Paragraph</h3>
+                                            </div>
+                                        </div>
+                
+                                        <div class="row">
+                                            <div>
+                                                <p class="golden-para" style="width: 80%;" id="view_para"><%=free_user.User.golden_paragraph%></p>
+                                            </div>
+                                        </div>
+        
+        
+                                </div>
+        
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="card" >
+                        <div class="card-body">
+                            <div class="card-body">
+    
+                                <div class="profile-rating">
+    
+                                    <div class="row justify-content-center ">
+                                        <div class="">
+                                            <h4 class="progress-title">Profile Setup Progress</h4>
+                                        </div>
+                                    </div>
+    
+                                    <div class="profile-divisions text-muted">
+    
+                                        <div class="row">
+    
+                                            <div class="row justify-content-end">
+                                                <i class="fa fa-check-circle mr-3 mt-3 edu-icon1"></i>
+                                                <h4 class="mt-3">Profile Details*</h4>
+                                            </div>
+    
+                                        </div>
+    
+    
+                                        <div class="row">
+                                            <div class="row justify-content-end">
+                                                <i class="fa fa-check-circle mr-3 mt-3  edu-icon1"></i>
+                                                <h4 class="mt-3">Education</h4>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <div class="row justify-content-end">
+                                                <i class="fa fa-check-circle mr-3 mt-3  edu-icon1"></i>
+                                                <h4 class="mt-3">Experience</h4>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <div class="row justify-content-end">
+                                                <i class="fa fa-check-circle mr-3 mt-3  edu-icon1"></i>
+                                                <h4 class="mt-3">Certification</h4>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <div class="row justify-content-end">
+                                                <i class="fa fa-check-circle mr-3 mt-3  edu-icon1"></i>
+                                                <h4 class="mt-3">Portfolio</h4>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <div class="row justify-content-end">
+                                                <i class="fa fa-check-circle mr-3 mt-3  edu-icon1"></i>
+                                                <h4 class="mt-3">Skills</h4>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+    
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+           </div>
+
+
+                <%if(free_user.Education){ %>
+                            <!-- VIEW FOR EDUCATION COMES HERE -->
+                            <div class="container-fluid mb-4" id="eduSection">
+                                <div class="row" id="show-education">
+                                    <div class="col-lg-8 col-md-8 mb-4">
+                                        <div class="accordion" id="accordionExample">
+                                            <div class="card">
+                                
+                                                <div class="card-header bg-white mt-3" id="ViewEducation">
+                                
+                                                    <button class="btn btn-link btn-block text-left" style="text-decoration: none; outline: none; " type="button" data-toggle="collapse" data-target="#collapseViewEdu" aria-expanded="false" aria-controls="collapseViewEdu">
+                                                        <div class="row justify-content-between education-profile">
+                                                            <div>
+                                                                <h3 class="edu">Education</h3>
+                                                            </div>
+                                
+                                                            <div class="">
+                                                                <div class="alert alert-success alert-dismissible mt-4" id="edu_success_msg" style="display: none; font-size: 15px; text-align: center; " >Education saved successfully.</div>
+                                                            </div>
+                                
+                                        
+                                                            <div>
+                                                                <i class="fa fa-angle-down text-muted profile-caret" style="font-size: 40px;"></i>
+                                                            </div>
+                                                        </div>
+                                                    </button>
+                                                    
+                                                </div>
+                                
+                                                <div id="collapseViewEdu" class="collapse show" aria-labelledby="ViewEducation" data-parent="#accordionExample">
+                                                    <div class="card-body">
+                                                        <% 
+                                                        let count = 0;
+                                                        free_user.Education.map(e =>{     
+                                                        %>
+                                                        <div class="card-body"  <% if(count >= 1){ %>
+                                                                                        hidden
+                                                                                    <% }else{ %>
+                                                                                    <% } %> >
+                                        
+                                                            <input type="text" value=""  id="EducationId" hidden>
+                                    
+                                                            <div class="card mb-3 show-delete-button " style="box-shadow: none; border: none;">
+                                    
+                                                                <div class="card-body viewing-education ">
+                                                                    <div class="row  ">
+                                    
+                                                                        <div class="profile-uni-details">
+                                                                            <div class="row mb-2">
+                                                                                <div>
+                                                                                    <span class=""  id="view_degree" style="font-size: 20px;"><i class="views-icon fa fa-graduation-cap mr-3"></i>
+                                                                                        <%=e.edu_degree%></span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row mb-2">
+                                                                                <div>
+                                                                                    <span  id="view_uni" style="font-size: 20px;"><i class="views-icon fa fa-university mr-3"></i>
+                                                                                        <%=e.edu_university%></span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row mb-2">
+                                                                                <div>
+                                                                                    <span  id="view_coun" style="font-size: 20px;"><i class="views-icon fa fa-map-marker ml-2 mr-4"></i>
+                                                                                        <%=e.edu_country%></span>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                            
+                                                                    </div>
+                                    
+                                                                    <div class="row justify-content-end">
+                                                                        <a id="edit-edu" data-toggle="collapse" href="#fm<%=e.id%>" role="button" aria-expanded="false" aria-controls="collapseExample" ><i class="fa fa-edit mr-3 mt-3"  ></i></a>
+                                                                        <a href="/user/delete-education/<%=e.id%>" ><i class="fa fa-trash mr-3 ml-3 mt-3 show-delete" id="faEduDelete"></i></a>
+                                                                        <br />
+                                                                        
+                                                                    </div>
+                                                                    <div class="collapse" id="fm<%=e.id%>">
+                                                                        <% include ../completing-profile/edit-form-reusable.ejs %>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                                        
+                                                        </div>
+                                                        <% 
+                                                        count++;
+                                                    }); %>
+                                                    <div class="card-footer bg-white">
+                                                        <a id="show-rest-education" class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                            <div class="row justify-content-start" >
+                                                                <h4 id="rest-text" style="color: #A41201;"> <%=free_user.Education.length - 1 %>  </h4>
+                                                                <h4 id="rest-other-text" class="ml-2" style="color: #A41201;">more</h4>
+                                                            </div>
+                                                        </a>
+                                                          <div class="" hidden id="rest-education">
+                                                            
+                                                            <% 
+                                                            let countlp = 0;
+                                                            free_user.Education.map(e =>{     
+                                                                %>
+                                                                <div class="card-body" <% if(countlp >= 1){ %>
+                                                                    
+                                                                <% }else{ %>
+                                                                    hidden
+                                                                <% } %> >
+                    
+                                        <input type="text" value=""  id="EducationId" hidden>
+                
+                                        <div class="card mb-3 show-delete-button " style="box-shadow: none; border: none;">
+                
+                                            <div class="card-body viewing-education ">
+                                                <div class="row  ">
+                
+                                                    <div class="profile-uni-details">
+                                                        <div class="row mb-2">
+                                                            <div>
+                                                                <span class=""  id="view_degree" style="font-size: 20px;"><i class="views-icon fa fa-graduation-cap mr-3"></i>
+                                                                    <%=e.edu_degree%></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div>
+                                                                <span  id="view_uni" style="font-size: 20px;"><i class="views-icon fa fa-university mr-3"></i>
+                                                                    <%=e.edu_university%></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div>
+                                                                <span  id="view_coun" style="font-size: 20px;"><i class="views-icon fa fa-map-marker ml-2 mr-4"></i>
+                                                                    <%=e.edu_country%></span>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                        
+                                                </div>
+                
+                                                <div class="row justify-content-end">
+                                                    <a data-toggle="collapse" href="#fmlp<%=e.id%>" role="button" aria-expanded="false" aria-controls="collapseExample" ><i class="fa fa-edit mr-3 mt-3"></i></a>
+                                                    <a href="/user/delete-education/<%=e.id%>" ><i class="fa fa-trash mr-3 ml-3 mt-3 show-delete" id="faEduDelete"></i></a>
+                                                </div>
+                                                <div class="collapse" id="fmlp<%=e.id%>">
+                                                    <% include ../completing-profile/edit-form-reusable.ejs %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                    
+                                    </div>
+                                    <div class="card-footer bg-white"></div>
+                                                            
+                                                            <%
+                                                            countlp++;
+                                                        }); %>
+                        
+                                                        </div>
+                                                        <div class="accordion">
+                                                            <div class="card border-0" style="box-shadow: none;">
+                                                                <div class="card-header bg-white" id="adding-new-edu" >
+                                                                    <div class="row justify-content-center  mt-3">
+                                                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                                            <h5 class="" style="color: #0c4767; font-size: 20px; font-weight: 400; cursor: pointer;">Add new education</h5>
+                                                                        </button>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="collapseOne" class="collapse" aria-labelledby="adding-new-edu" data-parent="#accordion">
+                                                                <div class="card-body">
+                                                                    <form action="" method="POST" id="fmProfile" enctype="multipart/form-data" >
+                                    
+                                                                        <div class="col-md-12 mt-5" id="divProfileForm">
+                                                                            
+                                                                                <input name="id" id="id" placeholder="" type="text" class="form-control" value="<%=userAccount.user_account_id%>" hidden>
+                                                                                <div class="form-row mt-4">
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="firstname">First Name*</label>
+                                                                                        <input type="text" onautocomplete="off" name="firstname" id="firstname" value="<%=user.first_name%>"  class="form-control" placeholder="" required>
+                                                                                    </div>
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="lastname">Last Name*</label>
+                                                                                        <input type="text" onautocomplete="off" name="lastname" id="lastname" value="<%=user.last_name%>" class="form-control" placeholder="" required>
+                                                                                    </div>
+                                                                                </div>
+                                        
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="jobtitle">Job Title*</label>
+                                                                                        <input type="text" onautocomplete="off" name="jobtitle" id="jobtitle" value="<%=user.job_title%>" class="form-control" placeholder="Eg: Web Designer" required>
+                                                                                    </div>
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="availability">Availability*</label>
+                                                                                        <select id="availability" name="availability" class="custom-select form-control" required>
+                                                                                            <option value="Full-Time" <%if(user.availability == "Full-Time"){%>
+                                                                                                    selected<%}%> >Full-Time</option>
+                                                                                            <option value="Part-Time" <%if(user.availability == "Part-Time"){%>
+                                                                                                    selected<%}%> >Part-Time</option>
+                                                                                        </select>
+                                                                                    </div>
+                                        
+                                                                                </div>
+                                        
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-12">
+                                                                                        <label for="golden_paragraph">Golden Paragraph</label>
+                                                                                        <textarea type="text" class="form-control" id="golden_paragraph" name="golden_paragraph" value="<%=user.golden_paragraph%>" placeholder="Write your personal summary here..."></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                        
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="dob">Date of Birth</label>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <input type="date" class="form-control"  name="date_of_birth" id="date_of_birth" value="<%=user.date_of_birth%>"  placeholder="DD/MM/YYYY" aria-label="" maxlength="11" aria-describedby="basic-addon1">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group col-md-6 ">
+                                                                                        <label for="gender" class="">Gender </label>
+                                                                                        <select id="gender" name="gender" class="custom-select form-control">
+                                                                                            <option value="male" <%if(user.gender == "male"){%>
+                                                                                                    selected<%}%> >Male</option>
+                                                                                            <option value="female" <%if(user.gender == "female"){%>
+                                                                                                    selected<%}%> >Female</option>
+                                                                                            <option value="p" <%if(user.gender == "p"){%>
+                                                                                                    selected<%}%> >Prefer not to disclose </option>
+                                                                                        </select>
+                                                                                    </div>
+                                        
+                                                                                </div>
+                                        
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="country">Country</label>
+                                                                                        <select name="country" id="country" class="custom-select form-control">
+                                                                                            <option value="<%=user.country%>" selected><%=user.country%></option>
+                                                                                            <% country.map(c =>{ %>
+                                                                                            <option value="<%=c.name%>"><%=c.name%></option>
+                                                                                            <% }); %>
+                                                                                        </select>
+                                                                                    </div>
+                                        
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="city">City*</label>
+                                                                                        <input type="text" onautocomplete="off" name="city" id="city" value="<%=user.city%>" class="form-control" placeholder="" required>
+                                                                                    </div>
+                                        
+                                                                                </div>
+                                        
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="email">Email</label>
+                                                                                        <input type="text" name="email" id="email" class="form-control bg-white" value="<%=userAccount.email%>" readonly>
+                                                                                    </div>
+                                        
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="phone">Phone</label>
+                                                                                        <div class="input-group mb-3">
+                                                                                            <div class="input-group-prepend">
+                                                                                                <input class="input-group-text bg-white"  name="country_code" id="country_code" value="<%=user.country_code%>" style="font-size: 15px; width: 60px;" readonly>
+                                                                                            </div>
+                                                                                            <input type="text" class="form-control" style="border-left: #ffffff;"  name="phone" id="phone" value="<%=user.phone%>"  placeholder="eg: 000-000-000" aria-label="phonenumber" maxlength="11" aria-describedby="basic-addon1">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                        
+                                                                                <div class="form-row justify-content-center">
+                                                                                    <div class="row ">
+                                                                                        <button type="submit" class="btn edit-profile-button mb-4" id="btnSubmitProfile">Save</button>
+                                                                                    </div>
+                                                                                </div>
+                                        
+                                                                            
+                                                                        </div>
+                                
+                                                                    </form>
+                                                                </div>
+                                                              </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                            <% include ../editing-forms/edit-education.ejs %>
+                <%}else{%>
+                    <%include ../none-added/no-education-added.ejs%>
+                <%}%>
+
+
+
+            
+
+
+
+            <!-- VIEW FOR EXPERIENCE COMES HERE -->
+
+
+
+
+            
+            <%if(exp){ %>
+                <div class="container-fluid mb-4" id="expSection">
+                    <div class="row" id="show-experience" >
+                        <div class="col-lg-8 col-md-8 mb-4">
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                    
+                                    <div class="card-header bg-white mt-3" id="ViewExperience">
+                    
+                                        <button class="btn btn-link btn-block text-left" style="text-decoration: none; outline: none; " type="button" data-toggle="collapse" data-target="#collapseViewExp" aria-expanded="true" aria-controls="collapseViewExp">
+                                            <div class="row justify-content-between education-profile">
+                                                <div>
+                                                    <h3 class="edu">Experience</h3>
+                                                </div>
+                    
+                                                
+                                                <div class="">
+                                                    <div class="alert alert-success alert-dismissible mt-4" id="exp_success_msg" style="display: none; font-size: 15px; text-align: center; " >Experience saved successfully.</div>
+                                                </div>
+                    
+                                                <div>
+                                                    <i class="fa fa-angle-down text-muted profile-caret" style="font-size: 40px;"></i>
+                                                </div>
+                                            </div>
+                                        </button>
+                                        
+                                    </div>
+                    
+                                    <div id="collapseViewExp" class="collapse show" aria-labelledby="ViewExperience" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <% 
+                                            let count = 0;
+                                            exp.map(e =>{     
+                                            %>
+                                            <div class="card-body"  <% if(count >= 1){ %>
+                                                                            hidden
+                                                                        <% }else{ %>
+                                                                        <% } %> >
+                            
+                                                <input type="text" value=""  id="EducationId" hidden>
+                        
+                                                <div class="card mb-3 show-delete-button " style="box-shadow: none; border: none;">
+                        
+                                                    <div class="card-body viewing-education ">
+                                                        <div class="row  ">
+                        
+                                                            <div class="profile-uni-details">
+                                                                <div class="row mb-2">
+                                                                    <div>
+                                                                        <span  id="exp_comp" style="font-size: 20px;"><i class="views-icon fa fa-building mr-3"></i>
+                                                                            <%=e.exp_company%></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-2">
+                                                                    <div>
+                                                                        <span  id="exp_postion" style="font-size: 20px;"><i class="views-icon fa fa-user mr-3"></i>
+                                                                            <%=e.exp_position%></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-2">
+                                                                    <div>
+                                                                        <span  id="exp_location" style="font-size: 20px;"><i class="views-icon fa fa-map-marker  mr-4"></i>
+                                                                            <%=e.exp_city%>, <%=e.exp_country%></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-2">
+                                                                    <div>
+                                                                        <span  id="exp_date" style="font-size: 20px;"><i class="views-icon fa fa-calendar  mr-4"></i>
+                                                                            <%=e.exp_from%> - <%=e.exp_to%></span>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                
+                                                        </div>
+                        
+                                                        <div class="row justify-content-end">
+                                                            <a id="edit-edu" data-toggle="collapse" href="#fm<%=e.id%>" role="button" aria-expanded="false" aria-controls="collapseExample" ><i class="fa fa-edit mr-3 mt-3"  ></i></a>
+                                                            <a href="/user/delete-experience/<%=e.id%>" ><i class="fa fa-trash mr-3 ml-3 mt-3 show-delete" id="faEduDelete"></i></a>
+                                                            <br />
+                                                            
+                                                        </div>
+                                                        <div class="collapse" id="fm<%=e.id%>">
+                                                            <% include ../completing-profile/edit-form-reusable-exp.ejs %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                            
+                                            </div>
+                                            <% 
+                                            count++;
+                                        }); %>
+                                        <div class="card-footer bg-white">
+                                            <a id="show-rest-experience" class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                <div class="row justify-content-start" >
+                                                    <h4 id="exp-rest-text" style="color: #A41201;"> <%=exp.length - 1 %>  </h4>
+                                                    <h4 id="exp-rest-other-text" class="ml-2" style="color: #A41201;">more</h4>
+                                                </div>
+                                            </a>
+                                              <div class="" hidden id="rest-experience">
+                                                
+                                                <% 
+                                                let countlp = 0;
+                                                exp.map(exp =>{     
+                                                    %>
+                                                    <div class="card-body" <% if(countlp >= 1){ %>
+                                                        
+                                                    <% }else{ %>
+                                                        hidden
+                                                    <% } %> >
+        
+                            <input type="text" value=""  id="EducationId" hidden>
+    
+                            <div class="card mb-3 show-delete-button " style="box-shadow: none; border: none;">
+    
+                                <div class="card-body viewing-education ">
+                                    <div class="row  ">
+    
+                                        <div class="profile-uni-details">
+                                            <div class="row mb-2">
+                                                <div>
+                                                    <span  id="exp_comp" style="font-size: 20px;"><i class="fa fa-building mr-3"></i>
+                                                    <%=exp.exp_company%></span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div>
+                                                    <span  id="exp_postion" style="font-size: 20px;"><i class="fa fa-user mr-3"></i>
+                                                   <%=exp.exp_position%> </span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div>
+                                                    <span  id="exp_location" style="font-size: 20px;"><i class="fa fa-map-marker mr-4"></i>
+                                                   <%=exp.exp_city%>, <%=exp.exp_country%>  </span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div>
+                                                    <span  id="exp_date" style="font-size: 20px;"><i class="fa fa-calendar mr-4"></i>
+                                                    <%=exp.exp_from%> - <%=exp.exp_to%></span>
+                                                </div>
+                                            </div>
+                                        </div>
+            
+                                    </div>
+    
+                                    <div class="row justify-content-end">
+                                        <a data-toggle="collapse" href="#fmlp<%=exp.id%>" role="button" aria-expanded="false" aria-controls="collapseExample" ><i class="fa fa-edit mr-3 mt-3"></i></a>
+                                        <a href="/user/delete-experience/<%=exp.id%>" ><i class="fa fa-trash mr-3 ml-3 mt-3 show-delete" id="faEduDelete"></i></a>
+                                    </div>
+                                    <div class="collapse" id="fmlp<%=exp.id%>">
+                                        <% include ../completing-profile/edit-form-reusable-exp.ejs %>
+                                    </div>
+                                </div>
+                            </div>
+                                        
+                        </div>
+                        <div class="card-footer bg-white"></div>
+                                                
+                                                <%
+                                                countlp++;
+                                            }); %>
+            
+                                            </div>
+                                            <div class="row justify-content-center  mt-3">
+                                                <h5 class="" style="color: #0c4767; font-size: 20px; font-weight: 400; cursor: pointer;">Add new experience</h5>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <% include ../editing-forms/edit-skills.ejs %>
+            <%}else{%>
+                  <%include ../none-added/no-experience-added.ejs%>
+             <%}%>
+
+
+
+
+
+
+
+            <%if(cert){ %>
+            <!-- VIEW FOR CERTIFICATION COMES HERE -->
+            <div class="container-fluid mb-4" id="certSection">
+                <div class="row" id="show-education">
+                    <div class="col-lg-8 col-md-8 mb-4">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                
+                                <div class="card-header bg-white mt-3" id="ViewCert">
+    
+                                    <button class="btn btn-link btn-block text-left" style="text-decoration: none; outline: none; " type="button" data-toggle="collapse" data-target="#collapseViewCert" aria-expanded="true" aria-controls="collapseViewCert">
+                                        <div class="row justify-content-between education-profile">
+                                            <div>
+                                                <h3 class="edu">Certification</h3>
+                                            </div>
+                
+                                            <div class="">
+                                                <div class="alert alert-success alert-dismissible mt-4" id="cert_success_msg" style="display: none; font-size: 15px; text-align: center; " >Certifcation saved successfully.</div>
+                                            </div>
+                        
+                                            <div>
+                                                <i class="fa fa-angle-down text-muted profile-caret" style="font-size: 40px;"></i>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    
+                                </div>
+                
+                    <div id="collapseViewCert" class="collapse show" aria-labelledby="ViewCert" data-parent="#accordionExample">
+                        <div class="card-body">
+                                        <% 
+                                        let count = 0;
+                                        cert.map(c =>{     
+                                        %>
+                                        <div class="card-body"  <% if(count >= 1){ %>
+                                                                        hidden
+                                                                    <% }else{ %>
+                                                                    <% } %> >
+                        
+                                            <input type="text" value=""  id="EducationId" hidden>
+                    
+                                            <div class="card mb-3 show-delete-button " style="box-shadow: none; border: none;">
+                    
+                                                <div class="card-body viewing-education ">
+                                                    <div class="row  ">
+                    
+                                                        <div class="profile-uni-details">
+                                                            <div class="row mb-2">
+                                                                <div>
+                                                                    <span  id="cert_name" style="font-size: 20px;"><%=c.cert_name%></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div>
+                                                                    <span  id="cert_issued" style="font-size: 20px;"><%=c.issued_by%></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div>
+                                                                    <span  id="cert_date" style="font-size: 20px;"><%=c.issued_date%>  - <%=c.valid_till%></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                            
+                                                    </div>
+                    
+                                                    <div class="row justify-content-end">
+                                                        <a id="edit-edu" data-toggle="collapse" href="#fm<%=c.id%>" role="button" aria-expanded="false" aria-controls="collapseExample" ><i class="fa fa-edit mr-3 mt-3"  ></i></a>
+                                                        <a href="/user/delete-certification/<%=c.id%>" ><i class="fa fa-trash mr-3 ml-3 mt-3 show-delete" id="faEduDelete"></i></a>
+                                                        <br />
+                                                        
+                                                    </div>
+                                                    <div class="collapse" id="fm<%=c.id%>">
+                                                        <% include ../completing-profile/edit-form-reusable-cert.ejs %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                        
+                                        </div>
+                                        <% 
+                                        count++;
+                                    }); %>
+                                    <div class="card-footer bg-white">
+                                        <a id="show-rest-certification" class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <div class="row justify-content-start" >
+                                                <h4 id="cert-rest-text" style="color: #A41201;"> <%=cert.length - 1 %>  </h4>
+                                                <h4 id="cert-rest-other-text" class="ml-2" style="color: #A41201;">more</h4>
+                                            </div>
+                                        </a>
+                                          <div class="" hidden id="rest-certification">
+                                            
+                                            <% 
+                                            let countlp = 0;
+                                            cert.map(c =>{     
+                                                %>
+                                                <div class="card-body" <% if(countlp >= 1){ %>
+                                                    
+                                                <% }else{ %>
+                                                    hidden
+                                                <% } %> >
+    
+                        <input type="text" value=""  id="EducationId" hidden>
+                        <div class="card mb-3 show-delete-button " style="box-shadow: none; border: none;">
+                            <div class="card-body viewing-education ">
+                                <div class="row  ">
+                                    <div class="profile-uni-details">
+                                        <div class="row mb-2">
+                                            <div>
+                                                <span  id="cert_name" style="font-size: 20px;"><%=c.cert_name%></span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div>
+                                                <span  id="cert_issued" style="font-size: 20px;"><%=c.issued_by%></span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div>
+                                                <span  id="cert_date" style="font-size: 20px;"><%=c.issued_date%>  - <%=c.valid_till%></span>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                </div>
+                                <div class="row justify-content-end">
+                                    <a data-toggle="collapse" href="#fmlp<%=c.id%>" role="button" aria-expanded="false" aria-controls="collapseExample" ><i class="fa fa-edit mr-3 mt-3"></i></a>
+                                    <a href="/user/delete-certification/<%=c.id%>" ><i class="fa fa-trash mr-3 ml-3 mt-3 show-delete" id="faEduDelete"></i></a>
+                                </div>
+                                <div class="collapse" id="fmlp<%=c.id%>">
+                                    <% include ../completing-profile/edit-form-reusable-cert.ejs %>
+                                </div>
+                            </div>
+                        </div>
+                                    
+                    </div>
+                    <div class="card-footer bg-white"></div>
+                                            
+                                            <%
+                                            countlp++;
+                                        }); %>
+        
+                                        </div>
+                                        <div class="row justify-content-center  mt-3">
+                                            <h5 class="" style="color: #0c4767; font-size: 20px; font-weight: 400; cursor: pointer;">Add new education</h5>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                
+            </div>
+            <% include ../editing-forms/edit-cert.ejs %>
+            <%}else{%>
+                  <%include ../none-added/no-certification-added.ejs%>
+             <%}%>
+
+
+
+
+        </div>
+
+       
+
+    </div>
+
+</div>
+
+<% include ../../layout/footer-public.ejs %>

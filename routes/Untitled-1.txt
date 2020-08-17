@@ -1,0 +1,99 @@
+<div class="container-fluid mb-4">
+    <div class="row" id="show_cert">
+        <div class="col-lg-8 col-md-8">
+
+    
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+    
+                    <div class="card-header bg-white mt-3" id="ViewCert">
+    
+                        <button class="btn btn-link btn-block text-left" style="text-decoration: none; outline: none; " type="button" data-toggle="collapse" data-target="#collapseViewCert" aria-expanded="true" aria-controls="collapseViewCert">
+                            <div class="row justify-content-between education-profile">
+                                <div>
+                                    <h3 class="edu">Certification</h3>
+                                </div>
+    
+                                <div class="">
+                                    <div class="alert alert-success alert-dismissible mt-4" id="cert_success_msg" style="display: none; font-size: 15px; text-align: center; " >Certifcation saved successfully.</div>
+                                </div>
+            
+                                <div>
+                                    <i class="fa fa-angle-down text-muted profile-caret" style="font-size: 40px;"></i>
+                                </div>
+                            </div>
+                        </button>
+                        
+                    </div>
+    
+                    <div id="collapseViewCert" class="collapse show" aria-labelledby="ViewCert" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <% cert.map(c =>{ %>
+                            <div class="card-body">
+                        
+                                <input type="text" value=""  id="EducationId" hidden>
+        
+                                <div class="card mb-3 show-delete-button " style="box-shadow: none; border: none;">
+        
+                                    <div class="card-body viewing-education ">
+                                        <div class="row  ">
+        
+                                            <div class="profile-uni-details">
+                                                <div class="row mb-2">
+                                                    <div>
+                                                        <span  id="cert_name" style="font-size: 20px;"><%=c.cert_name%></span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-2">
+                                                    <div>
+                                                        <span  id="cert_issued" style="font-size: 20px;"><%=c.issued_by%></span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-2">
+                                                    <div>
+                                                        <span  id="cert_date" style="font-size: 20px;"><%=c.issued_date%>  - <%=c.valid_till%></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                
+                                        </div>
+        
+                                        <div class="row justify-content-end">
+                                            <a href="" ><i class="fa fa-edit mr-3 mt-3 show-delete edu-icon"  id="faEduEdit"></i></a>
+                                            <a href="/user/delete-certification/<%=c.id%>" ><i class="fa fa-trash mr-3 ml-3 mt-3 show-delete" id="faEduDelete"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+            
+<!--                     
+                                <div class="card-footer bg-white">
+
+                                    <div class="row justify-content-start" >
+                                        <h4 style="color: #A41201;">1</h4>
+                                        <h4 class="ml-2" style="color: #A41201;">more</h4>
+                                    </div>
+
+
+                                    <div class="row justify-content-center  mt-3">
+                                        <h5 class="edu-icon" style="color: #0c4767; font-size: 20px; font-weight: 400; cursor: pointer;">Add new certification</h5>
+                                    </div>
+                                </div> -->
+                                
+                
+                            </div>
+                            <% }); %>
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+        <div class="col-md-3">
+            
+        </div>
+    
+    </div>
+    </div>
+</div>

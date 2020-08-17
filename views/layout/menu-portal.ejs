@@ -1,0 +1,66 @@
+<style>
+    .sticky-top {
+        top: 60px;
+        z-index: 5;
+    }
+    .nav-link{
+        color: #ffffff;
+    }
+
+
+</style>
+
+<div class="  container-fluid sticky-top" >
+    <div class="row">
+        <div class="card-header-dash">
+            <ul class="nav">
+                <li class="nav-item"> 
+                    
+                   <% if(userAccount.role_id === 2 ) {%>
+                    <a class="nav-link active" href="/user/dashboard-freelancer"> Dashboard</a>
+                   <% }else{ %>
+                    <a class="nav-link active" href="/user/dashboard-client">Dashboard</a>
+                   <% } %>
+
+
+                </li>
+                <li class="nav-item">
+                    <% if(userAccount.role_id === 2 ) {%>
+                        <a class="nav-link" href="/user/freelancer-profile-view">Profile</a>
+
+                        <% }else{ %>
+                            <a class="nav-link" href="/user/client-profile">Profile</a>
+     
+                        <% } %>
+                </li>
+                <!-- <li class="nav-item">
+                    <% if(userAccount.role_id === 2 ) {%>
+                        <a class="nav-link" href="#">Messages</a>
+
+                        <% }else{ %>
+     
+                            <a class="nav-link" href="#">Messages</a>       
+                            <% } %>
+                </li>
+                <li class="nav-item">
+                    <% if(userAccount.role_id === 2 ) {%>
+                        <a class="nav-link" href="#">Wallet</a>
+
+                        <% }else{ %>
+                            <a class="nav-link" href="#">Wallet</a>
+     
+                        <% } %>
+                </li>
+                <li class="nav-item">
+                    <% if(userAccount.role_id === 2 ) {%>
+                        <a class="nav-link" href="/user/jobs">Browse Jobs</a>
+
+                        <% }else{ %>
+                            <a class="nav-link" href="/user/post-job">Post Job</a>
+     
+                        <% } %>
+
+                </li> -->
+        </div>
+    </div>
+</div>

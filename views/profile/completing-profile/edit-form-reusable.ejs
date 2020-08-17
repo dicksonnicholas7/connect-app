@@ -1,0 +1,79 @@
+<style>
+    #custom-button{
+    display: inline-block;
+    margin-left: -18px;
+    margin-top: 3px;
+    cursor: pointer;
+    background-color: rgb(12, 71, 103);
+    height: 32px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(12, 71, 103);
+    border-image: initial;
+    border-radius: 3px;
+    padding: 7px 12px;
+    color: white;
+    }
+</style>
+
+<div class="col-md-12">
+                        
+    <form action="/user/update-education-old" method="POST" enctype="multipart/form-data" id="">
+        <input name="edu_id" value="<%=e.id%>" id="edu_id" placeholder="" type="text" class="form-control" value="" hidden>
+        <div class="form-row mt-4">
+            <div class="form-group col-md-6">
+              <label for="degree">Degree</label>
+              <select id="degree" name="degree" class="custom-select form-control">
+                <option value="HND"  >HND</option>
+                <option value="Bachelor's Degree" >Bachelor's Degree</option>
+                <option value="Master's Degree"  >Master's Degree</option>
+                <option value="Doctorate Degree" >Doctorate Degree</option>
+                <option value="Professor">PhD</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="program">Program of Study</label>
+              <input type="text" name="program" id="program" value="<%=e.edu_programme %>" class="form-control" placeholder="">
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="availability">University / College</label>
+                <input type="text" onautocomplete="offuniversity" name="university" id="university" value="<%=e.edu_university %>" class="form-control" placeholder="">
+            </div>
+                <div class="form-group col-md-6">
+                    <label for="country">Country</label>
+                    <select name="edu_country" id="edu_country" class="custom-select form-control">
+                        <option value="" selected></option>
+                        <% country.map(c =>{ %>
+                        <option value="<%=c.name%>"><%=c.name%></option>
+                        <% }); %>
+                    </select>
+                </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="project">Project / Activities</label>
+                <textarea type="text" class="form-control" id="project" name="project" value="<%=e.edu_project %>" placeholder=""></textarea>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label>Attach File(s)</label><br>
+                <div class="form-control">
+                    <label for="file-upload" class="custom-file-upload"><p class="text-center" style="color: #fff;">Click to upload file(s)</p></label>
+                    <input id="file-upload" name="file"  type="file"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row justify-content-center">
+            <div class="row ">
+                <input type="submit" value="Update" class="btn edit-profile-button mb-4">
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,231 @@
+<style>
+    .edit-profile{
+        display: block;
+    }
+</style>            
+                <div class="container-fluid mt-5">
+                    <div class="edit-profile">
+                   
+
+
+                        <div class="profile-details-arrange">
+
+                            <form action="" method="POST" enctype="multipart/form-data" id="freeEditData" class="">
+                                <input name="id" id="id" placeholder="" type="text" class="form-control" value="<%=userAccount.user_account_id%>" hidden><br />
+                        
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="firstname">Firstname</label>
+                                        <input type="text" onautocomplete="off" name="firstname" id="firstname" value="<%=user.first_name%>"  class="form-control" placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="lastname">Lastname</label>
+                                        <input type="text" onautocomplete="off" name="lastname" id="lastname" value="<%=user.last_name%>" class="form-control" placeholder="">
+                                    </div>  
+                            
+                                </div>
+                            
+                            
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="jobtitle">Job Title</label>
+                                        <input type="text" onautocomplete="off" name="jobtitle" id="jobtitle" value="<%=user.job_title%>" class="form-control" placeholder="Eg: Web Designer">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="availability">Availability*</label>
+                                        <select id="availability" name="availability" class="custom-select form-control" required>
+                                            <option value="Full-Time" <%if(user.availability == "Full-Time"){%>
+                                                    selected<%}%> >Full-Time</option>
+                                            <option value="Part-Time" <%if(user.availability == "Part-Time"){%>
+                                                    selected<%}%> >Part-Time</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            
+                            
+                            
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="golden_paragraph">Golden Paragraph</label>
+                                        <textarea type="text" class="form-control" id="golden_paragraph" name="golden_paragraph" value="<%=user.golden_paragraph%>" placeholder="Write your personal summary here..."></textarea>
+                                    </div>
+                                </div>
+                            
+                            
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="dob">Date of Birth</label>
+                                        <div class="input-group mb-3">
+                                            <input type="date" class="form-control"  name="date_of_birth" id="date_of_birth" value="<%=user.date_of_birth%>"  placeholder="DD/MM/YYYY" aria-label="" maxlength="11" aria-describedby="basic-addon1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 ">
+                                        <label for="gender" class="">Gender: </label>
+                                        <select id="gender" name="gender" class="custom-select form-control">
+                                            <option value="male" <%if(user.gender == "male"){%>
+                                                    selected<%}%> >Male</option>
+                                            <option value="female" <%if(user.gender == "female"){%>
+                                                    selected<%}%> >Female</option>
+                                            <option value="p" <%if(user.gender == "p"){%>
+                                                    selected<%}%> >Prefer not to disclose </option>
+                                        </select>
+                                    </div>
+                                </div>
+                         
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="country">Country*</label>
+                                        <select name="country" id="country" class="custom-select form-control" required>
+                                            <option value="<%=user.country%>" selected><%=user.country%></option>
+                                            <% country.map(c =>{ %>
+                                            <option value="<%=c.name%>"><%=c.name%></option>
+                                            <% }); %>
+                                        </select>
+                                    </div>
+                            
+                                    <div class="form-group col-md-6">
+                                        <label for="city">City</label>
+                                        <input type="text" name="city" id="city" class="form-control" value="<%=user.city%>" placeholder="Eg: Munich">
+                                    </div>
+                                </div>
+                            
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="email">Email</label>
+                                        <input type="text" name="email" id="email" class="form-control bg-white" value="<%=userAccount.email%>" readonly>
+                                    </div>
+                            
+                                    <div class="form-group col-md-6">
+                                        <label for="phone">Phone</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <input class="input-group-text bg-white"  name="country_code" id="country_code" value="<%=user.country_code%>" style="font-size: 15px; width: 60px;" readonly>
+                                            </div>
+                                            <input type="text" class="form-control" style="border-left: #ffffff;"  name="phone" id="phone" value="<%=user.phone%>"  placeholder="eg: 000-000-000" aria-label="phonenumber" maxlength="11" aria-describedby="basic-addon1">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <% if(userAccount.role_id == 2){ %>
+                                    <div class="row justify-content-center " >
+                                        <button class="btn save-education-button mb-4" id="btnEditFreelancerProfile">Save</button>
+                                    </div>
+                              <%  }else{ %>
+                                    <div class="row justify-content-center " >
+                                        <button class="btn save-education-button mb-4" id="btnEditClientProfile">Save</button>
+                                    </div>
+                              <%  } %>
+
+                            </form>
+                        </div>
+  
+                        </div>
+                </div>
+                           
+
+
+
+
+
+
+<!-- 
+
+<div class="col-md-9">
+
+    <div class="form-row mt-4">
+        <div class="form-group col-md-6">
+        <label for="firstname">First Name*</label>
+        <input type="text" onautocomplete="off" name="firstname" id="firstname" value=""  class="form-control" placeholder="" required>
+        </div>
+        <div class="form-group col-md-6">
+        <label for="lastname">Last Name*</label>
+        <input type="text" onautocomplete="off" name="lastname" id="lastname" value="" class="form-control" placeholder="" required>
+        </div>  
+
+    </div>
+
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="jobtitle">Job Title*</label>
+            <input type="text" onautocomplete="off" name="jobtitle" id="jobtitle" value="" class="form-control" placeholder="Eg: Web Designer" required>
+        </div>
+        <div class="form-group col-md-6">
+        <label for="availability">Availability*</label>
+        <select id="availability" name="availability" class="custom-select form-control" required>
+            <option value="Full-Time">
+                    Full-Time</option>
+            <option value="Part-Time">
+                    Part-Time</option>
+        </select>
+    </div>
+    </div>
+
+
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="golden_paragraph">Golden Paragraph</label>
+            <textarea type="text" class="form-control" id="golden_paragraph" name="golden_paragraph" value="" placeholder="Write your personal summary here..."></textarea>
+        </div>
+    </div>
+
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="dob">Date of Birth</label>
+            <div class="input-group mb-3">
+                <input type="date" class="form-control" style="border-right: #ffffff;"  name="date_of_birth" id="date_of_birth" value=""  placeholder="DD/MM/YYYY" aria-label="" maxlength="11" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="form-group col-md-6 ">
+            <label for="gender" class="">Gender: </label>
+            <select id="gender" name="gender" class="custom-select form-control">
+                <option value="male">
+                        Male</option>
+                <option value="female">
+                        Female</option>
+                <option value="p">
+                        Prefer not to disclose </option>
+            </select>
+    </div>
+    </div>
+
+
+    
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="country">Country*</label>>
+            <select name="country" id="country" class="custom-select form-control" required>
+                <option value="" selected></option>
+            
+                <option value=""></option>
+                
+            </select>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="city">City*</label>
+            <input type="text" name="city" id="city" class="form-control" value="" placeholder="Eg: Munich" required>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" class="form-control bg-white" value="" readonly>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="phone">Phone</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <input class="input-group-text bg-white"  name="country_code" id="country_code" value="" style="font-size: 15px; width: 60px;" readonly>
+                </div>
+                <input type="text" class="form-control" style="border-left: #ffffff;"  name="phone" id="phone" value=""  placeholder="eg: 000-000-000" aria-label="phonenumber" maxlength="11" aria-describedby="basic-addon1">
+            </div>
+        </div>
+    </div>
+
+</div> -->

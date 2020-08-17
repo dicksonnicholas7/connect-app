@@ -1,0 +1,83 @@
+<style>
+    #upload-button{
+    display: inline-block;
+    margin-left: -18px;
+    margin-top: 3px;
+    cursor: pointer;
+    background-color: rgb(12, 71, 103);
+    height: 32px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(12, 71, 103);
+    border-image: initial;
+    border-radius: 3px;
+    padding: 7px 12px;
+    color: white;
+    }
+</style>
+
+
+<div class="col-md-12">
+    <form action="/user/update-experience-old" method="POST"  id="fmExp">
+        <input name="exp_id" id="exp_id" placeholder="" type="text" class="form-control" value="<%=exp.id%>" hidden><br />
+
+        <div class="form-row mt-4">
+            <div class="form-group col-md-6">
+                <label for="company">Company</label>
+                <input type="text" onautocomplete="off" name="company" id="company" value="<%=exp.exp_company%>"  class="form-control" placeholder="">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="position">Position</label>
+                <input type="text" onautocomplete="off" name="position" id="position" value="<%=exp.exp_position%>" class="form-control" placeholder="">
+            </div>  
+        </div>
+
+        <div class="form-row mt-4">
+            <div class="form-group col-md-6">
+                <label for="country">Country</label>
+                <select name="exp_country" id="exp_country" class="custom-select form-control">
+                    <option value="" selected></option>
+                    <% country.map(c =>{ %>
+                    <option value="<%=c.name%>"><%=c.name%></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="City">City</label>
+                <input type="text" onautocomplete="off" name="exp_city" id="exp_city" value="<%=exp.exp_city%>" class="form-control" placeholder="">
+            </div>  
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="start_date">From</label>
+                <input type="date" id="exp_start_date" name="exp_start_date"  class="form-control" value="<%=exp.exp_from%>" placeholder="">
+              </div>
+            <div class="form-group col-md-6 ">
+                <label for="end_date" class="">To</label>
+                <input type="date" id="exp_end_date" name="exp_end_date" class="form-control" value="<%=exp.exp_to%>"  placeholder="">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="responsibilities">Responsibilities</label>
+                <textarea type="text" class="form-control" id="responsibilities" name="responsibilities" value="<%=exp.exp_responsibilities%>" placeholder=""></textarea>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label>Attach File(s)</label><br>
+                <div class="form-control">
+                    <input type="file" id="exp-file" hidden="" name="exp_file"/>
+                    <button type="button" id="upload-button" >Click to Upload file(s)</button>
+                    <span id="text"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-row justify-content-center">
+            <div class="row ">
+                <input type="submit" value="Update" class="btn edit-profile-button mb-4">
+            </div>
+        </div>
+    </form>
+</div>

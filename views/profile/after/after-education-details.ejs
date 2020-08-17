@@ -1,0 +1,161 @@
+
+
+
+<div class="container-fluid mt-5">
+    <div class="row mt-5" id="show-education" style="display: none;">
+        <div class="col-lg-8 col-md-8 mb-4">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+    
+                    <div class="card-header bg-white mt-3" id="ViewEducation">
+
+                        <div class="">
+                            <div class="alert alert-success alert-dismissible mt-4" id="edu_success_msg" style="display: none; width: fit-content; font-size: 15px; text-align: center; " >Education saved successfully.</div>
+                        </div>
+    
+                        <button class="btn btn-link btn-block text-left" style="text-decoration: none; outline: none; " type="button" data-toggle="collapse" data-target="#collapseViewEdu" aria-expanded="false" aria-controls="collapseViewEdu">
+                            <div class="row justify-content-between education-profile">
+                                <div>
+                                    <h3 class="edu">Education</h3>
+                                </div>
+            
+                                <div>
+                                    <i class="fa fa-angle-down text-muted profile-caret" style="font-size: 40px;"></i>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade show active" id="eduForm" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div  id="success_msg_edu_edit" ></div>
+                             </div>
+                          </button>
+                        
+                    </div>
+
+
+                    <div class="col-md-12" id="editEdufm" style="display: none;">
+
+                    <form action="" method="POST" enctype="multipart/form-data" id="fmEduEdit" >
+                        <input name="editid" id="editid" placeholder="" type="text" class="form-control" value="" hidden>
+                        <div class="form-row mt-4">
+                            <div class="form-group col-md-6">
+                              <label for="degree">Degree</label>
+                              <select id="editdegree" name="editdegree" class="custom-select form-control">
+                                <option value="HND"  >HND</option>
+                                <option value="Bachelor's Degree" >Bachelor's Degree</option>
+                                <option value="Master's Degree"  >Master's Degree</option>
+                                <option value="Doctorate Degree" >Doctorate Degree</option>
+                                <option value="Professor">PhD</option>
+                              </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="program">Program of Study</label>
+                              <input type="text" name="editprogram" id="editprogram" value="" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="availability">University / College</label>
+                                <input type="text" onautocomplete="offuniversity" name="edituniversity" id="edituniversity" value="" class="form-control" placeholder="">
+                            </div>
+                                <div class="form-group col-md-6">
+                                    <label for="country">Country</label>
+                                    <select name="editedu_country" id="editedu_country" class="custom-select form-control">
+                                        <option value="" selected></option>
+                                        
+                                        <option value=""></option>
+                                    
+                                    </select>
+                                </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="project">Project / Activities</label>
+                                <textarea type="text" class="form-control" id="editproject" name="editproject" value="" placeholder=""></textarea>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label>Attach File(s)</label><br>
+                                <div class="form-control">
+                                    <input type="file" id="real-file" name="file" hidden="" />
+                                    <button type="button" id="custom-button" >Click to Upload file(s)</button>
+                                    <span id="custom-text"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row justify-content-center">
+                            <div class="row ">
+                                <button type="submit" class="btn edit-profile-button mb-4" id="btnSubmitEducationEdit">Save</button>
+                                
+                            </div>
+                        </div>
+                    </form>
+
+                  </div>
+    
+                    <div id="collapseViewEdu" class="collapse" aria-labelledby="ViewEducation" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="card-body">
+             
+                                <input type="text" value=""  id="EducationId" hidden>
+        
+                                <div class="card mb-3 show-delete-button " style="box-shadow: none; border: none;">
+        
+                                    <div class="card-body viewing-education ">
+                                        <div class="row  ">
+        
+                                            <div class="profile-uni-details">
+                                                <div class="row mb-2">
+                                                    <div>
+                                                        <span  id="view_degree" style="font-size: 20px;"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-2">
+                                                    <div>
+                                                        <span  id="view_uni" style="font-size: 20px;"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-2">
+                                                    <div>
+                                                        <span  id="view_coun" style="font-size: 20px;"></span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                
+                                        </div>
+        
+                                        <div class="row justify-content-end">
+                                            <i class="fa fa-edit mr-3 mt-3 show-delete" id="faEduEdit"></i>
+                                            <span id="btndelEdu"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+
+                            
+                            </div>
+                        </div>
+                    </div>
+                       
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        
+    </div>
+
+    
+</div>
+
+
+
+   
+

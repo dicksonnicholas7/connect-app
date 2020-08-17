@@ -1,0 +1,158 @@
+<% include ../layout/header-public.ejs %>
+<% include ../layout/menu-public.ejs %>
+
+
+<link rel="stylesheet" type="text/css" media="all" href="/vendors/css/profile_style.css" />
+<link rel="stylesheet" type="text/css" href="/vendors/css/tags.css" />
+<link rel="stylesheet" type="text/css" href="/vendors/css/category-skills.css" />
+
+
+<div class=" " style="background-image:url('../../vendors/img/laptop-with-overlay.png'); padding-bottom: 850px; padding-top: 10px ">
+
+    <div class="container" style="width: fit-content; height: max-content;">
+            <div class="col-md-12">
+                <div class="text-center justify-content-center">
+                    <h2 style="color: #fff;">Add Skills and Experience</h2>
+                    <p class="text-center " style="color: #fff;">Let clients know about your skills and experiences. This helps them know you are the right person for the job</p>
+                </div>
+            </div>
+
+    <div class="col-md-12">
+        <div class="card justify-content-center">
+            <div class="card text-white mb-3">
+
+                <div class="card-header justify-content-center mb-3" style="background-color: #0c4767; height: 50px; padding: 0">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <p class="nav-item nav-link mr-5 ml-5 text-muted " id="nav-home-tab"    aria-selected="false">Personal Details</a>
+                            <p class="nav-item nav-link mr-5 ml-5 active" id="nav-contact-tab" aria-selected="true">Skills & Experience</a>
+                                <p class="nav-item nav-link mr-5 ml-5 text-muted" id="nav-contact-tab" aria-selected="true">Education</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                            <form action="" method="POST" class="form-row" enctype="multipart/form-data" id="foData">
+                                <input name="id" id="id" placeholder="" type="text" class="form-control" value="<%=userAccount.user_account_id%>" hidden><br />
+                                <div class="card-business mt-1" >
+                                    <div  id="success_msg" ></div>
+                                    <%include category-skills.ejs%>
+                                   
+                                    <div class="row mr-5 ml-5" >
+                                        <div class="col-md-12">
+                                                 <hr/>
+                                        </div> 
+                                    </div>  
+                                    <h4 class="text-center" style="font-weight: 600;">Professional Experience</h4>
+                                    <div class="row mr-5 ml-5" >
+                                        <div class="col-md-12">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="Experience">Position</label>
+                                                    <input type="text" onautocomplete="off" name="position" id="position"  class="form-control" placeholder="" >
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="Years">Company</label>
+                                                    <input type="text" onautocomplete="off" name="company" id="company"  class="form-control" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div class="row mr-5 ml-5" >
+                                        <div class="col-md-12">
+                                            <div class="form-row ">
+                                                <div class="form-group col-md-6">
+                                                    <label for="country">Country</label>>
+                                                    <select name="exp_country" id="exp_country" class="custom-select form-control">
+                                                        <option value="" selected></option>
+                                                        <% country.map(c =>{ %>
+                                                        <option value="<%=c.name%>"><%=c.name%></option>
+                                                        <% }); %>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="Years">City</label>
+                                                    <input type="text" onautocomplete="off" name="exp_city" id="exp_city"  class="form-control" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div class="row mr-5 ml-5" >
+                                        <div class="col-md-12">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="Experience">From</label>
+                                                    <input type="date" name="exp_start_date" id="exp_start_date" class="form-control"  placeholder="" >
+                                                   
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="Years">To</label>
+                                                    <input type="date" name="exp_end_date" id="exp_end_date"  class="form-control" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+
+                                    <div class="row mr-5 ml-5" >
+                                        <div class="col-md-12">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="Experience">Responsibilities</label>
+                                                    <textarea type="text" class="form-control" id="responsibilities" name="responsibilities"  placeholder="" ></textarea>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label>Attach File(s)</label><br>
+                                                    <div class="form-control">
+                                                        <label for="file-upload" class="custom-file-upload"><p class="text-center" style="color: #fff;">Click to upload file(s)</p></label>
+                                                        <input id="file-upload" name="file"  type="file"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div class="row mr-5 ml-5 mb-2" >
+                                        <div class="col-md-12">
+                                            <i style="cursor: pointer;" class="fa fa-plus-circle mt-1" aria-hidden="true"></i><a class="ml-2 mb-3" id="btnAddAnotherExperience" style="cursor: pointer;color: #0c4767;">Add another experience</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row ml-5" >
+                                        <div class="col-md-4 m-auto">
+                                            <div class="form-row  ">
+                                                <div class="col-md-12 mb-5">
+                                                   <a style="color: #0c4767; text-decoration: underline; cursor: pointer;" href="/user/complete-freelancer-profile" >Back</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 m-auto ">
+                                            <div class="form-row justify-content-center">
+                                                <div class="col-md-12 mb-5">
+                                                    <button type="submit" name="next" id="btnSkillSave" class="form-control profile-btn">Save & Continue</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 m-auto ">
+                                            <div class="form-row justify-content-center">
+                                                <div class="col-md-12 mb-5">
+                                                    <a style="color: #0c4767; text-decoration: underline; margin-left: 170px; cursor: pointer;" href="/user/complete-freelancer-education">Next</a>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>                    
+                                         </div>
+                                     </div>
+                                </div>
+                            </form>
+                        </div>
+             
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<%include ../layout/footer-public.ejs %>
+<%include ../layout/skills-footer.ejs %>

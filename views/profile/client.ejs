@@ -1,0 +1,196 @@
+
+<% include ../layout/header-public.ejs %>
+<% include ../layout/menu-public.ejs %>
+<% include ../layout/menu-portal.ejs %>
+
+<link rel="stylesheet" type="text/css" media="all" href="/vendors/css/dashboard.css" />
+
+
+<style>
+    #profile{
+        display: block;
+    }
+    #profile_edit{
+        display: none;
+    }
+    #edit-education{
+        display: none;
+    }
+</style>
+
+
+<div class="container-fluid">
+
+    <form action="/user/update-client-profile" method="POST" enctype="multipart/form-data">
+        <input name="id" id="id" placeholder="" type="text" class="form-control" value="<%=userAccount.user_account_id%>" hidden>
+            <!-- COVER PHOTO AND PROFILE PIC STARTS FFROM HERE INTHE FORM -->
+            <div class="row" >
+                <div class="jumbotron jumbotron-fluid header-image-profile" style="background-image: url('/vendors/img/cover-photo.png'); background-size: cover;">
+                    
+                    <div class="container-fluid">
+                        <input class="text-center m-auto"  hidden type="file" id="picture" name="picture" onchange="readURL(this)" value="Add Photo" accept="image/*">
+                      <h1 class="display-4"></h1>
+                      <p class="lead"></p>
+                    </div>
+    
+
+                    <div>
+                        <label for="profile_picture" class="">
+                            <% if(user.picture !== null ){%>
+                                <img src='../../images/users/individual/<%=user.picture%>' id="profile_picture_img" style="cursor: pointer;" class="profile-pic-jumb" alt="...">
+                            <% }else{ %>
+                                <img src='../../images/users/individual/avatar.png' id="profile_picture_img" style="cursor: pointer;" class="profile-pic-jumb" alt="...">
+                            <% } %>
+                            <form action="/user/upload-profile-picture" method="post" enctype="multipart/form-data" id="img-form" >
+                            <input class="text-center m-auto" id="profile_picture" 
+                                name="profile_picture"  type="file"  onchange="readURL(this)" 
+                                accept="image/*" hidden />
+                            </form>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- REST OF THE INFORMATION ON THE FORM FOLLOWS FROM HERE -->
+
+            
+
+            <div class="container-fluid">
+
+                <div class="row mb-5 main-profile-page ">
+        
+                       
+                    <div class="col-lg- col-md-12 mb-4">
+                        <div class="card ">
+                            <div class="card-body">
+                                <div class="card-body">
+                                        <div class="col-md-12 mt-5">
+        
+                                                <div class="form-row mt-4">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="firstname">First Name*</label>
+                                                        <input type="text" onautocomplete="off" name="firstname" id="firstname" value="<%=user.first_name%>"  class="form-control" placeholder="">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="lastname">Last Name*</label>
+                                                        <input type="text" onautocomplete="off" name="lastname" id="lastname" value="<%=user.last_name%>" class="form-control" placeholder="">
+                                                    </div>  
+                                                </div>
+        
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-12">
+                                                        <label for="golden_paragraph">Golden Paragraph</label>
+                                                        <textarea type="text" class="form-control" id="golden_paragraph" name="golden_paragraph" value="<%=user.golden_paragraph%>" placeholder="Write your personal summary here..."></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="dob">Date of Birth</label>
+                                                        <div class="input-group mb-3">
+                                                            <input type="date" class="form-control"  name="date_of_birth" id="date_of_birth" value="<%=user.date_of_birth%>"  placeholder="DD/MM/YYYY" aria-label="" maxlength="11" aria-describedby="basic-addon1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-6 ">
+                                                        <label for="gender" class="">Gender </label>
+                                                        <select id="gender" name="gender" class="custom-select form-control">
+                                                            <option value="male" <%if(user.gender == "male"){%>
+                                                                    selected<%}%> >Male</option>
+                                                            <option value="female" <%if(user.gender == "female"){%>
+                                                                    selected<%}%> >Female</option>
+                                                            <option value="p" <%if(user.gender == "p"){%>
+                                                                    selected<%}%> >Prefer not to disclose </option>
+                                                        </select>
+                                                    </div>
+                                                        
+                                                </div>
+
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="country">Country</label>
+                                                        <select name="country" id="country" class="custom-select form-control">
+                                                            <option value="<%=user.country%>" selected><%=user.country%></option>
+                                                            <% country.map(c =>{ %>
+                                                            <option value="<%=c.name%>"><%=c.name%></option>
+                                                            <% }); %>
+                                                        </select>
+                                                    </div>
+        
+                                                    <div class="form-group col-md-6">
+                                                        <label for="city">City*</label>
+                                                        <input type="text" onautocomplete="off" name="city" id="city" value="<%=user.city%>" class="form-control" placeholder="" required>
+                                                    </div>
+                                                        
+                                                </div>
+
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="email">Email</label>
+                                                        <input type="text" name="email" id="email" class="form-control bg-white" value="<%=userAccount.email%>" readonly>
+                                                    </div>
+        
+                                                    <div class="form-group col-md-6">
+                                                        <label for="phone">Phone</label>
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <input class="input-group-text bg-white"  name="country_code" id="country_code" value="<%=user.country_code%>" style="font-size: 15px; width: 60px;" readonly>
+                                                            </div>
+                                                            <input type="text" class="form-control" style="border-left: #ffffff;"  name="phone" id="phone" value="<%=user.phone%>"  placeholder="eg: 000-000-000" aria-label="phonenumber" maxlength="11" aria-describedby="basic-addon1">
+                                                        </div>
+                                                    </div>                                 
+                                                </div>
+
+                                                <div class="form-row justify-content-center">
+                                                    <div class="row">
+                                                        <button type="submit" class="btn edit-profile-button mb-4" id="">Save</button>
+                                                    </div>
+                                                </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                    </div>
+        
+        
+                </div>
+            </div>
+
+    </form>
+
+</div>
+
+<script>
+
+    console.log('file upload')
+    function readURL(input) {
+
+console.log('file upload')
+
+if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        $('#profile')
+            .attr('src', e.target.result)
+            .width(50)
+            .height(50);
+
+            $('#profile_picture_img')
+            .attr('src', e.target.result)
+            .width(96)
+            .height(100); 
+    };
+    //clement in the building
+    reader.readAsDataURL(input.files[0]);
+}
+}
+</script>
+
+
+<% include ../layout/footer-public.ejs %>
+
+
+
+

@@ -1,0 +1,141 @@
+<% include ../after/after-experience.ejs  %>
+
+<style>
+    #upload-button{
+    display: inline-block;
+    margin-left: -18px;
+    margin-top: 3px;
+    cursor: pointer;
+    background-color: rgb(12, 71, 103);
+    height: 32px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(12, 71, 103);
+    border-image: initial;
+    border-radius: 3px;
+    padding: 7px 12px;
+    color: white;
+    }
+</style>
+
+<div class="col-lg-8 col-md-8 mb-4 mt-5" id="exp_form_hide">
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+
+            
+
+            <div class="card-header bg-white mt-3" id="Experience">
+
+                <div id="expList"></div>
+
+                <button class="btn btn-link btn-block text-left" style="text-decoration: none; outline: none; " type="button" data-toggle="collapse" data-target="#collapseExp" aria-expanded="false" aria-controls="collapseExp">
+                    <div class="row justify-content-between education-profile">
+                        <div>
+                            <h3 class="edu"> Experience</h3>
+                        </div>
+    
+                        <div>
+                            <i class="fa fa-angle-down text-muted profile-caret" style="font-size: 40px;"></i>
+                        </div>
+                    </div>
+                </button>
+                
+            </div>
+    
+            <div id="collapseExp" class="collapse" aria-labelledby="Experience" data-parent="#accordionExample">
+                <div class="card-body">
+
+                    <div class="">
+                        <div class="alert alert-success alert-dismissible mt-4" id="exp_success_msg" style="display: none; width: 50%; text-align: center; margin-left: 250px;" >Experience saved successfully.</div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <form action="" method="POST"  id="fmExp">
+                            <input name="exp_id" id="exp_id" placeholder="" type="text" class="form-control" value="" hidden><br />
+
+                            <div class="form-row mt-4">
+                                <div class="form-group col-md-6">
+                                    <label for="company">Company</label>
+                                    <input type="text" onautocomplete="off" name="company" id="company" value=""  class="form-control" placeholder="">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="position">Position</label>
+                                    <input type="text" onautocomplete="off" name="position" id="position" value="" class="form-control" placeholder="">
+                                </div>  
+                            </div>
+
+                            <div class="form-row mt-4">
+                                <div class="form-group col-md-6">
+                                    <label for="country">Country</label>
+                                    <select name="exp_country" id="exp_country" class="custom-select form-control">
+                                        <option value="" selected></option>
+                                        <% country.map(c =>{ %>
+                                        <option value="<%=c.name%>"><%=c.name%></option>
+                                        <% }); %>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="City">City</label>
+                                    <input type="text" onautocomplete="off" name="exp_city" id="exp_city" value="" class="form-control" placeholder="">
+                                </div>  
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="start_date">From</label>
+                                    <input type="date" id="exp_start_date" name="exp_start_date"  class="form-control" value="" placeholder="">
+                                  </div>
+                                <div class="form-group col-md-6 ">
+                                    <label for="end_date" class="">To</label>
+                                    <input type="date" id="exp_end_date" name="exp_end_date" class="form-control" value=""  placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="responsibilities">Responsibilities</label>
+                                    <textarea type="text" class="form-control" id="responsibilities" name="responsibilities" value="" placeholder=""></textarea>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Attach File(s)</label><br>
+                                    <div class="form-control">
+                                        <input type="file" id="exp-file" hidden="" name="exp_file"/>
+	                                    <button type="button" id="upload-button" >Click to Upload file(s)</button>
+	                                    <span id="text"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row justify-content-center">
+                                <div class="row ">
+                                    <button class="btn edit-profile-button mb-4" id="btnSubmitExperience">Save</button>
+                                    <button type="submit" class="btn edit-profile-button mb-4" id="btnEditExperience" hidden>Edit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+               
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const expFileBtn = document.getElementById("exp-file");
+    const uploadBtn = document.getElementById("upload-button");
+    const Txt = document.getElementById("text");
+
+    uploadBtn.addEventListener("click", function(){
+        expFileBtn.click();
+    });
+
+    expFileBtn.addEventListener("change", function(){
+        if (expFileBtn.value) {
+            Txt.innerHTML = expFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+        }else{
+            Txt.innerHTML = "";
+        }
+    });
+</script>

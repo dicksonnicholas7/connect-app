@@ -1,0 +1,303 @@
+<% include ../../layout/header-public.ejs %>
+<% include ../../layout/menu-public.ejs %>
+<% include ../../layout/menu-portal.ejs %>
+
+<link rel="stylesheet" type="text/css" media="all" href="/vendors/css/dashboard.css" />
+<style>
+    #progress_id{
+        margin-left: 20px !important;
+    }
+</style>
+
+
+    <div class="form">
+        <div class="container-fluid">
+            <div class="row" >
+                <div class="jumbotron jumbotron-fluid header-image-profile" style="background-image: url('/vendors/img/cover-photo.png');">
+                    <div class="container-fluid">
+                    <h1 class="display-4"></h1>
+                    <p class="lead"></p>
+                    </div>
+                    
+                        <div class="div-pic" >
+                            <label for="profile_picture" class="">
+                                <% if(user.picture !== null ){%>
+                                    <img src='../../images/users/individual/<%=user.picture%>' id="profile_picture_img" style="cursor: pointer;" class="profile-pic-jumb" alt="...">
+                                <% }else{ %>
+                                    <img src='/vendors/img/profile-pic-icon.png' id="profile_picture_img" style="cursor: pointer;" class="profile-pic-jumb" alt="...">
+                                <% } %>
+                                <form action="/user/upload-profile-picture" method="post" enctype="multipart/form-data" id="img-form" >
+                                <input class="text-center m-auto" id="profile_picture" 
+                                    name="profile_picture"  type="file"  onchange="readURL(this)" 
+                                    accept="image/*" hidden />
+                                </form>
+                            </label>
+                        </div>
+                    
+                    <div class="col-md-3 mt-5">
+                        <div class="row">
+                            <div class="col-md-12" style="color:blue;">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        
+
+
+<div class="container-fluid" >
+
+
+
+        <div class="container-fluid">
+
+            <div class="row ">
+    
+                
+                    <div class="col-lg-8 col-md-8 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-body">  
+                                    <% include ../after/after-profile-details  %>  
+
+                                    <div class="">
+                                        <div class="alert alert-success alert-dismissible mt-4" id="profile_success_msg" style="display: none; width: 50%; text-align: center; margin-left: 250px;" >Personal details saved successfully.</div>
+                                    </div>
+
+                                    
+
+                                    <form action="" method="POST" id="fmProfile" enctype="multipart/form-data" >
+                                    
+                                        <div class="col-md-12 mt-5" id="divProfileForm">
+                                            
+                                                <input name="id" id="id" placeholder="" type="text" class="form-control" value="<%=userAccount.user_account_id%>" hidden>
+                                                <div class="form-row mt-4">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="firstname">First Name*</label>
+                                                        <input type="text" onautocomplete="off" name="firstname" id="firstname" value="<%=user.first_name%>"  class="form-control" placeholder="" required>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="lastname">Last Name*</label>
+                                                        <input type="text" onautocomplete="off" name="lastname" id="lastname" value="<%=user.last_name%>" class="form-control" placeholder="" required>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="jobtitle">Job Title*</label>
+                                                        <input type="text" onautocomplete="off" name="jobtitle" id="jobtitle" value="<%=user.job_title%>" class="form-control" placeholder="Eg: Web Designer" required>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="availability">Availability*</label>
+                                                        <select id="availability" name="availability" class="custom-select form-control" required>
+                                                            <option value="Full-Time" <%if(user.availability == "Full-Time"){%>
+                                                                    selected<%}%> >Full-Time</option>
+                                                            <option value="Part-Time" <%if(user.availability == "Part-Time"){%>
+                                                                    selected<%}%> >Part-Time</option>
+                                                        </select>
+                                                    </div>
+        
+                                                </div>
+        
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-12">
+                                                        <label for="golden_paragraph">Golden Paragraph</label>
+                                                        <textarea type="text" class="form-control" id="golden_paragraph" name="golden_paragraph" value="<%=user.golden_paragraph%>" placeholder="Write your personal summary here..."></textarea>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="dob">Date of Birth</label>
+                                                        <div class="input-group mb-3">
+                                                            <input type="date" class="form-control"  name="date_of_birth" id="date_of_birth" value="<%=user.date_of_birth%>"  placeholder="DD/MM/YYYY" aria-label="" maxlength="11" aria-describedby="basic-addon1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-6 ">
+                                                        <label for="gender" class="">Gender </label>
+                                                        <select id="gender" name="gender" class="custom-select form-control">
+                                                            <option value="male" <%if(user.gender == "male"){%>
+                                                                    selected<%}%> >Male</option>
+                                                            <option value="female" <%if(user.gender == "female"){%>
+                                                                    selected<%}%> >Female</option>
+                                                            <option value="p" <%if(user.gender == "p"){%>
+                                                                    selected<%}%> >Prefer not to disclose </option>
+                                                        </select>
+                                                    </div>
+        
+                                                </div>
+        
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="country">Country</label>
+                                                        <select name="country" id="country" class="custom-select form-control">
+                                                            <option value="<%=user.country%>" selected><%=user.country%></option>
+                                                            <% country.map(c =>{ %>
+                                                            <option value="<%=c.name%>"><%=c.name%></option>
+                                                            <% }); %>
+                                                        </select>
+                                                    </div>
+        
+                                                    <div class="form-group col-md-6">
+                                                        <label for="city">City*</label>
+                                                        <input type="text" onautocomplete="off" name="city" id="city" value="<%=user.city%>" class="form-control" placeholder="" required>
+                                                    </div>
+        
+                                                </div>
+        
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="email">Email</label>
+                                                        <input type="text" name="email" id="email" class="form-control bg-white" value="<%=userAccount.email%>" readonly>
+                                                    </div>
+        
+                                                    <div class="form-group col-md-6">
+                                                        <label for="phone">Phone</label>
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <input class="input-group-text bg-white"  name="country_code" id="country_code" value="<%=user.country_code%>" style="font-size: 15px; width: 60px;" readonly>
+                                                            </div>
+                                                            <input type="text" class="form-control" style="border-left: #ffffff;"  name="phone" id="phone" value="<%=user.phone%>"  placeholder="eg: 000-000-000" aria-label="phonenumber" maxlength="11" aria-describedby="basic-addon1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="form-row justify-content-center">
+                                                    <div class="row ">
+                                                        <button type="submit" class="btn edit-profile-button mb-4" id="btnSubmitProfile">Save</button>
+                                                    </div>
+                                                </div>
+        
+                                            
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+        
+        
+                    </div>
+                
+    
+    
+                    <div class="col-lg-3 col-md-4 ">
+                        <div class="card  " >
+                            <div class="card-body">
+                                <div class="card-body m-auto">
+        
+                                        <div class="row justify-content-center ">
+                                            <div class=" justify-content-center">
+                                                <h4 class="progress-title">Profile Setup Progress</h4>
+                                            </div>
+                                        </div>
+        
+                                        <div class="profile-divisions text-muted ">
+                                            <div class="row" id="progress_id">
+                                                <div class="box justify-content-center">
+                                                    <div class="percent justify-content-center">
+                                                        <svg class="html" id="html">
+                                                            <circle cx="70" cy="70" r="70"></circle>
+                                                            <circle id="circle" cx="70" cy="70" r="70"></circle>
+                                                        </svg>
+                                                        <div class="number">
+                                                            <p class="percentage" id="percentage">0</p><span>%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mr-auto ml-auto mt-5">
+        
+                                                <div class="row justify-content-center">
+                                                    <i id="profile" class="fa profile_icon fa-check-circle mr-5 edu-icon1"></i>
+                                                    <h4 id="profile1" class="">Profile Details*</h4>
+                                                </div>
+        
+                                            </div>
+        
+        
+                                            <div class="row mr-auto ml-auto">
+                                                <div class="row justify-content-end">
+                                                    <i id="education" class="fa fa-check-circle mr-5 edu-icon1 "></i>
+                                                    <h4 class="education">Education*</h4>
+                                                </div>
+                                            </div>
+        
+                                            <div class="row mr-auto ml-auto">
+                                                <div class="row justify-content-end">
+                                                    <i id="exp_icon" class="fa fa-check-circle mr-5 edu-icon1"></i>
+                                                    <h4 class="experience">Experience</h4>
+                                                </div>
+                                            </div>
+        
+                                            <div class="row mr-auto ml-auto">
+                                                <div class="row justify-content-end">
+                                                    <i id="cert_icon" class="fa fa-check-circle mr-5  edu-icon1"></i>
+                                                    <h4 class="certificate">Certification</h4>
+                                                </div>
+                                            </div>
+        
+                                            <!-- <div class="row">
+                                                <div class="row justify-content-end">
+                                                    <i class="fa fa-check-circle mr-3  edu-icon1"></i>
+                                                    <h4 class="">Portfolio</h4>
+                                                </div>
+                                            </div>
+        
+                                            <div class="row">
+                                                <div class="row justify-content-end">
+                                                    <i class="fa fa-check-circle mr-3  edu-icon1"></i>
+                                                    <h4 class="">Skills</h4>
+                                                </div>
+                                            </div> -->
+        
+                                        </div>
+        
+                                    
+        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+     
+        
+                </div>
+        
+        
+            </div>
+    
+    
+       
+    
+    
+        
+    
+           <!-- EDUCATION FORMS COMES HERE -->
+           <% include complete-freelancer-education.ejs  %>
+        
+        
+           <!-- PROFESSIONAL EXPERIENCE COMES HERE  -->
+            <% include complete-freelancer-experience.ejs  %>
+    
+    
+              <!-- CERTIFICATION COMES HERE  -->
+           <% include complete-freelancer-certification.ejs  %>
+    
+    
+        <!-- HEADER SECTION GOES HERE -->
+    
+        
+    
+    
+        
+    
+    </div>
+    
+    
+    <% include ../../layout/footer-public.ejs %>
+    

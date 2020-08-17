@@ -1,0 +1,116 @@
+<% include ../after/after-certification.ejs  %>
+
+<style>
+    #cert-button{
+    display: inline-block;
+    margin-left: -18px;
+    margin-top: 3px;
+    cursor: pointer;
+    background-color: rgb(12, 71, 103);
+    height: 32px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(12, 71, 103);
+    border-image: initial;
+    border-radius: 3px;
+    padding: 7px 12px;
+    color: white;
+    }
+</style>
+
+<div class="col-lg-8 col-md-8 mb-4 mt-5" id="show_cert_hide">
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+
+            <div class="card-header bg-white mt-3" id="Certification">
+
+                <button class="btn btn-link btn-block text-left" style="text-decoration: none; outline: none; " type="button" data-toggle="collapse" data-target="#collapseCer" aria-expanded="false" aria-controls="collapseCer">
+                    <div class="row justify-content-between education-profile">
+                        <div>
+                            <h3 class="edu">Certification</h3>
+                        </div>
+    
+                        <div>
+                            <i class="fa fa-angle-down text-muted profile-caret" style="font-size: 40px;"></i>
+                        </div>
+                    </div>
+                  </button>
+                
+            </div>
+
+            <div id="collapseCer" class="collapse" aria-labelledby="Certification" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="">
+                        <div class="alert alert-success alert-dismissible mt-4" id="cert_success_msg" style="display: none; width: 50%; text-align: center; margin-left: 250px;" >Certification saved successfully.</div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <form action="" method="POST" enctype="multipart/form-data" id="fmCert">
+                            <input name="cert_id" id="cert_id" placeholder="" type="text" class="form-control" value="" hidden>
+                            <div class="form-row mt-4">
+                                <div class="form-group col-md-6">
+                                    <label for="certificate">Certificate</label>
+                                    <input type="text" onautocomplete="off" name="certificate" id="certificate" value=""  class="form-control" placeholder="">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="issued">Issued By</label>
+                                    <input type="text" onautocomplete="off" name="issued_by" id="issued_by" value="" class="form-control" placeholder="">
+                                </div>  
+                            </div>
+
+                            
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="issue_date">Issue Date</label>
+                                    <input type="date" id="issue_date" name="issue_date" class="form-control" value="" placeholder="">
+                                  </div>
+                                <div class="form-group col-md-6 ">
+                                    <label for="valid" class="">Valid Till</label>
+                                    <input type="date" id="valid_till" name="valid_till" class="form-control" value="" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Attach File(s)</label><br>
+                                    <div class="form-control">
+                                        <input type="file" id="cert-file" hidden="" name="cert_file"/>
+	                                    <button type="button" id="cert-button" >Click to Upload file(s)</button>
+	                                    <span id="cert-text"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row justify-content-center">
+                                <div class="row ">
+                                    <button type="submit" class="btn edit-profile-button mb-4" id="btnSubmitCertification">Save</button>
+                                    <button type="submit" class="btn edit-profile-button mb-4" id="btnEditCertification" hidden>Edit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+               
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const certFileBtn = document.getElementById("cert-file");
+    const certBtn = document.getElementById("cert-button");
+    const certTxt = document.getElementById("cert-text");
+
+    certBtn.addEventListener("click", function(){
+        certFileBtn.click();
+    });
+
+    certFileBtn.addEventListener("change", function(){
+        if (certFileBtn.value) {
+            certTxt.innerHTML = certFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+        }else{
+            certTxt.innerHTML = "";
+        }
+    });
+</script>
